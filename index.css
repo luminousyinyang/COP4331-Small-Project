@@ -1,0 +1,118 @@
+body {
+    display: flex;              /* Align the entire container in the center */
+    justify-content: center;        
+    align-items: center;       
+
+    min-height: 100vh;
+    background-color: black;
+}
+
+.container {
+    position: relative;
+    width: 850px;
+    height: 550px;
+
+    display: flex;
+    align-items: center;
+
+    background-color: white;
+    overflow: hidden;
+    border-radius: 50px;
+}
+
+.input-box {
+    position: absolute; /* The position of both register and login is absolute relative (container's relative position) so to the left and top */
+    width: 50%;
+    height: 65%;
+}
+
+.input-box form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.input-box input, .input-box button{
+    width: 275px;
+    height: 28px;
+}
+
+.input-box h1 { text-align: center;}
+
+
+/*  The register and login divs switch places when button to register or to login is clicked 
+    Register is at first hidden and it starts to the left by half of the container's width size
+    Login is initially visible and seen in the right of the container
+*/
+.register {
+    left: 425px;
+    visibility: hidden;
+    transition: left 0.6s ease-in-out 1s, visibility 0.1s ease-in-out 1s;
+}
+
+.container.active .register{
+    left: 0;
+    visibility: visible;
+}
+
+.login {
+    left: 425px;
+    visibility: visible;
+    transition: left 0.6s ease-in-out 1s, visibility 0.1s ease-in-out 1s;
+}
+
+.container.active .login {
+    left: 0;
+    visibility: hidden;
+}
+
+/*  To show the slider moving, it is expanded first to have a longer fluid transition
+    Then it initially starts to the left by half of its width
+*/
+.slider {
+    position: absolute;
+    width: 200%;
+    height: 100%;
+    display: flex;
+    border-radius: 100px;
+    background: rgb(165, 165, 222);
+    left: -1275px;
+    transition: left 1.5s ease-in-out;
+}
+
+.container.active .slider {
+    left: 425px;
+}
+
+.welcome, .welcome-back {
+    position: absolute;
+    width: 25%;
+    margin-top: 150px;
+    text-align: center;
+}
+
+/* Welcome to Contacts Manager is seen at the beginning*/
+.welcome {
+    left: 1275px;
+    opacity: 100%;
+    transition: all 1.5s ease-in;
+}
+/* Welcome to Contacts Manager is moved to the left of the container (hidden due to containers' hidden overflow)*/
+.container.active .welcome {
+    left: -850px;
+    opacity: 0%;
+}
+
+/* Welcome back message is initially hidden */
+.welcome-back {
+    left: 2125px;
+    transition: all 1.5s ease-in;
+    opacity: 0%;
+}
+
+/* The welcome back message is visible*/
+.container.active .welcome-back {
+    left: 0;
+    opacity: 100%;
+}
