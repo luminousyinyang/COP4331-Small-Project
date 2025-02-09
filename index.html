@@ -3,13 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
     <title>Contacts Manager</title>
 </head>
 
 <body>
     <div class="container">
-        <div class="register">
-            <h2>Register</h2>
+        <div class="input-box register">
+            <h1>Register</h1>
             <form action="" method="post">
                 <input type="text" id="username" name="username" placeholder="Username" required>
                 <input type="text" id="password" name="password" placeholder="Password" required>
@@ -17,8 +19,8 @@
             </form>
         </div>
     
-        <div class="login">
-            <h2>Login</h2>
+        <div class="input-box login">
+            <h1>Login</h1>
             <form action="" method="post">
                 <input type="text" id="username" name="username" placeholder="Username" required>
                 <input type="text" id="password" name="password" placeholder="Password" required>
@@ -26,17 +28,17 @@
             </form>
         </div>
 
-        <div class="welcome-slider">
-            <div class="">
-                <h1>Welcome Back!</h1>
-                <p>Already have an account?</p>
-                <button class="">Login</button>
-            </div>
-
-            <div class="">
+        <div class="slider">
+            <div class="welcome">
                 <h1>Welcome to Contacts Manager!</h1>
                 <p>Don't have an account?</p>
-                <button class="">Register</button>
+                <button class="slider-register-btn">Register</button>
+            </div>
+
+            <div class="welcome-back">
+                <h1>Welcome Back!</h1>
+                <p>Already have an account?</p>
+                <button class="slider-login-btn">Login</button>
             </div>
         </div>
     </div>
