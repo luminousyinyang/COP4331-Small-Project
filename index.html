@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="index.css">
     <script src="index.js" defer></script>
+    <script type="text/javascript" src="js/md5.js"></script>
+    <script type="text/javascript" src="js/code.js"></script>
     <script src="https://unpkg.com/feather-icons"></script>
     
     <title>Contacts Manager</title>
@@ -31,14 +33,15 @@
             <h1>Login</h1>
             <form action="" method="get">
                 <div>
-                    <input type="text" id="username" name="username" placeholder="Username" required>
+                    <input type="text" id="username-login" name="username" placeholder="Username" required>
                     <i data-feather="user"></i>
                 </div>
                 <div>
-                    <input class="pw-field-log" type="password" id="password" name="password" placeholder="Password" required>
+                    <input class="pw-field-log" type="password" id="password-login" name="password" placeholder="Password" required>
                     <i class="pw-svg-log" data-feather="eye"></i>
                 </div>
-                <button type="submit">Login</button>
+                <p id="loginResult"></p>
+                <button type="button" onclick="doLogin();">Login</button>
             </form>
         </div>
 

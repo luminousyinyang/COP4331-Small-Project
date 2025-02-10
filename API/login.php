@@ -15,20 +15,18 @@
     }
     # Request from database entries where username and password are equal to input
     $stmt = $conn->prepare("SELECT ID,FirstName,LastName FROM Users WHERE Login = ? AND Password = ?");
-    $stmt->bind_param("ss", $indata["login"], $indata["password"]);
+    $stmt->bind_param("ss", $inData["login"], $inData["password"]);
     $stmt->execute();
     $result = $stmt->get_result();
-    $stmt->close();
 
     # Return data if found, return with error if not
     if( $row = $result->fetch_assoc())
     {
         # Update DateLastLoggedIn
-
-        $stmt = $conn->prepare("UPDATE Users SET DateLastLoggedIn = current_timestamp() WHERE Login = ?");
-        $stmt->bind_param("ss", $indata["login"]);
-        $stmt->execute();
-        $result = $stmt->get_result();
+        $updateStmt = $conn->prepare("UPDATE Users SET DateLastLoggedIn = current_timestamp() WHERE Login = ?");
+        $updateStmt->bind_param("s", $inData["login"]);
+        $updateStmt->execute();
+        $updateStmt->close();
         
         returnWithInfo( $row['FirstName'], $row['LastName'], $row['ID']);
     }
@@ -54,7 +52,7 @@
 
     function returnWithError($err)
     {
-        $ret = '{"id":0."FirstName":"", "LastName":"","error":"' . $err . '"}';
+        $ret = '{"id":0,"FirstName":"", "LastName":"","error":"' . $err . '"}';
         sendResultInfoAsJson($ret);
     }
 

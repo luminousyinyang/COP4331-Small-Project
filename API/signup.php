@@ -18,7 +18,7 @@
 
     # Check for duplicate login
     $stmt = $conn->prepare("SELECT ID FROM Users WHERE Login = ?");
-    $stmt->bind_param("ss", $indata["login"]);
+    $stmt->bind_param("s", $indata["login"]);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -32,13 +32,13 @@
 
     $stmt->close();
     $stmt = $conn->prepare("INSERT INTO Users (FirstName,LastName,Login,Password) values (?,?,?,?)");
-    $stmt->bind_param("ss", $firstName,$lastName,$login,$password);
+    $stmt->bind_param("ssss", $firstName,$lastName,$login,$password);
     $stmt->execute();
     $result = $stmt->get_result();
 
     $stmt->close();
     $stmt = $conn->prepare("SELECT ID from Users where Login = ?");
-    $stmt->bind_param("ss", $login);
+    $stmt->bind_param("s", $login);
     $stmt->execute();
     $result = $stmt->get_result();
 
