@@ -74,6 +74,11 @@ body {
     height: auto;
 }
 
+#first-name, #last-name {
+    width: 127.5px;
+    height: 35px;
+}
+
 .input-box input {
     width: 275px;
     height: 35px;
