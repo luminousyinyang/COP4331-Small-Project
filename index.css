@@ -189,7 +189,7 @@ body {
 .welcome {
     left: 1275px;
     opacity: 100%;
-    transition: left 1.5s ease-in-out, opacity 1.4s ease-in;
+    transition: left 1.5s ease-in-out, opacity 1s ease-in;
 }
 /* Welcome to Contacts Manager is moved to the left of the container (hidden due to containers' hidden overflow)*/
 .container.active .welcome {
@@ -200,7 +200,7 @@ body {
 /* Welcome back message is initially hidden */
 .welcome-back {
     left: 2125px;
-    transition: left 1.5s ease-in-out, opacity 1.4s ease-in;
+    transition: left 1.5s ease-in-out, opacity 1s ease-in;
     opacity: 0%;
 }
 
