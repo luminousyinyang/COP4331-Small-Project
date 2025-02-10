@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="index.css">
+    <script src="index.js" defer></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    
+    <title>Contacts Manager</title>
+</head>
+
+<body>
+    <div class="container">
+        <div class="input-box register">
+            <h1>Register</h1>
+            <form action="" method="post">
+                <div>
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                    <i data-feather="user"></i>
+                </div>
+                <div>
+                    <input class="pw-field-reg" type="password" id="password" name="password" placeholder="Password" required>
+                    <i class="pw-svg-reg" data-feather="eye"></i>
+                </div>
+                <button type="submit">Register</button>
+            </form>
+        </div>
+    
+        <div class="input-box login">
+            <h1>Login</h1>
+            <form action="" method="get">
+                <div>
+                    <input type="text" id="username" name="username" placeholder="Username" required>
+                    <i data-feather="user"></i>
+                </div>
+                <div>
+                    <input class="pw-field-log" type="password" id="password" name="password" placeholder="Password" required>
+                    <i class="pw-svg-log" data-feather="eye"></i>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+
+        <div class="slider">
+            <div class="welcome">
+                <h1>Welcome to Contacts Manager!</h1>
+                <p>Don't have an account?</p>
+                <button class="slider-register-btn">Register</button>
+            </div>
+
+            <div class="welcome-back">
+                <h1>Welcome Back!</h1>
+                <p>Already have an account?</p>
+                <button class="slider-login-btn">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        feather.replace();
+    </script>
+</body> 
+</html>
