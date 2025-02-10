@@ -52,6 +52,13 @@ body {
     height: 65%;
 }
 
+.input-box p {
+    display: block;
+    align-content: center;
+    text-align: center;
+    margin: 0;
+}
+
 .input-box form {
     display: flex;
     flex-direction: column;
@@ -74,12 +81,17 @@ body {
     height: auto;
 }
 
+#first-name, #last-name {
+    width: 127.5px;
+    height: 35px;
+}
+
 .input-box input {
     width: 275px;
     height: 35px;
 }
 
-.input-box button { 
+.input-box button, .input-box p { 
     width: 295px;
     height: 35px;
 }
