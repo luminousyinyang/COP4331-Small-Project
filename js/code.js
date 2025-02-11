@@ -21,7 +21,6 @@ function doLogin()
     document.getElementById("loginResult").innterHTML = "";
 
     let temp = {login:user, password:password};
-    console.log("Payload before sending:", temp);
     let jsonPayload = JSON.stringify(temp);
 
     let url = urlBase + '/login.' + extension;
@@ -111,6 +110,61 @@ function doLogout()
 
 function signUp()
 {
+    userId = 0;
+    firstName = "";
+    lastName = "";
+
+    // PLACEHOLDERS are for both username and password
+    // input fields from index.html
+    let firstNameSignUp = document.getElementById("first-name").value;
+    let lastNameSignUp = document.getElementById("last-name").value;
+    let user = document.getElementById("username").value;
+    let password = document.getElementById("password").value;
+
+    // // PLACEHOLDER is for element in index.html that will store
+    // // username and password, this line clears this information
+    // document.getElementById("loginResult").innterHTML = "";
+
+    let temp = {FirstName:firstNameSignUp, LastName:lastNameSignUp, login:user, password:password};
+    let jsonPayload = JSON.stringify(temp);
+
+    let url = urlBase + '/signup.' + extension;
+
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+    try
+    {
+        xhr.onreadystatechange = function()
+        {
+            if (this.readyState == 4 && this.status == 200)
+            {
+                let jsonObject = JSON.parse(xhr.responseText);
+                userId = jsonObject.id;
+
+                // if(userId < 1)
+                // {
+                //     document.getElementById('loginResult').innerHTML = "User/Password combination incorrect";
+                //     return;
+                // }
+
+                firstName = jsonObject.FirstName;
+                lastName = jsonObject.LastName;
+
+                saveCookie();
+
+                window.location.href = "postlogin.html";
+            }
+        };
+        xhr.send(jsonPayload);
+
+    }
+    catch(err)
+    {
+        // document.getElementById("loginResult").innerHTML = err.message;
+    }
+
 
 }
 

@@ -1,5 +1,4 @@
 <?php
-
     # Gets necessary data from JS file
     $indata = getRequestInfo();
 
@@ -10,7 +9,7 @@
     $password = $indata['password'];
 
     # Connect to database
-    $conn = new mysqli("localhost", "Alex", "password", "contqact_manager");
+    $conn = new mysqli("localhost", "Alex", "password", "contact_manager");
     if($conn->connect_error)
     {
         returnWithError($conn->connect_error);
@@ -18,7 +17,7 @@
 
     # Check for duplicate login
     $stmt = $conn->prepare("SELECT ID FROM Users WHERE Login = ?");
-    $stmt->bind_param("s", $indata["login"]);
+    $stmt->bind_param("s", $login);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -34,7 +33,7 @@
     $stmt = $conn->prepare("INSERT INTO Users (FirstName,LastName,Login,Password) values (?,?,?,?)");
     $stmt->bind_param("ssss", $firstName,$lastName,$login,$password);
     $stmt->execute();
-    $result = $stmt->get_result();
+    // $result = $stmt->get_result();
 
     $stmt->close();
     $stmt = $conn->prepare("SELECT ID from Users where Login = ?");
@@ -55,7 +54,7 @@
         return json_decode(file_get_contents('php://input'), true);
     }
 
-    function sendResultInfo($obj)
+    function sendResultInfoAsJson($obj)
     {
         header('Content-type: application/json');
         echo $obj;
@@ -63,7 +62,7 @@
 
     function returnWithError($err)
     {
-        $ret = '{"id":0."FirstName":"", "LastName":"","error":"' . $err . '"}';
+        $ret = '{"id":0,"FirstName":"", "LastName":"","error":"' . $err . '"}';
         sendResultInfoAsJson($ret);
     }
 
