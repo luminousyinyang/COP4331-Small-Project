@@ -25,6 +25,7 @@
     if($result->fetch_assoc())
     {
         returnWithError("Login already exists");
+        exit();
     }
 
     # If entry not found, create a new User entry in the database
