@@ -1,15 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 /* 
-    color1: light yellow orange
+    color1: yellow orange with high transparency
     color2: pale white
-    color3: bright yellow
+    color3: light yellow orange
     color4: papaya 
     color5: roasted brown
     color6: white
 */
 :root {
-    --color1: ;
+    --color1: #f9c48b2f;
     --color2: #ebeae8;
     --color3: #f1cca5b7;
     --color4: #aa5c52;
@@ -27,7 +27,7 @@ body {
     align-items: center;       
 
     min-height: 100vh;
-    background-image: linear-gradient(130deg, var(--color4), var(--color3), var(--color4));
+    background-image: linear-gradient(220deg, var(--color4), var(--color3), var(--color4));
 }
 
 .container {
