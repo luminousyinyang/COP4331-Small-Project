@@ -143,11 +143,11 @@ function signUp()
                 let jsonObject = JSON.parse(xhr.responseText);
                 userId = jsonObject.id;
 
-                // if(userId < 1)
-                // {
-                //     document.getElementById('loginResult').innerHTML = "User/Password combination incorrect";
-                //     return;
-                // }
+                if(userId < 1)
+                {
+                    document.getElementById('signupResult').innerHTML = "User Account Already Exists";
+                    return;
+                }
 
                 firstName = jsonObject.FirstName;
                 lastName = jsonObject.LastName;
@@ -162,7 +162,7 @@ function signUp()
     }
     catch(err)
     {
-        // document.getElementById("loginResult").innerHTML = err.message;
+        document.getElementById("signupResult").innerHTML = err.message;
     }
 
 
