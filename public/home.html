@@ -6,6 +6,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="./styles/home.css">
     <script src="./js/home.js" defer></script>
+    <script src="./js/modal.js" defer></script>
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 
@@ -51,6 +52,28 @@
             <button id="next-page">Next</button>
         </div>
     </div>
+
+    <dialog id="modal">
+        <i id="x-modal" data-feather="x"></i>
+        <form id="modal-form" method="dialog">
+            <span><i id="user-icon-placeholder" data-feather="user"></i></span>
+            <div class="fullname">
+                <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+                <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+            </div>
+            <div class="phone-box">
+                <input type="tel" id="phone-num" name="phone-num" placeholder="(XXX)-XXX-XXXX" required>
+                <i data-feather="phone"></i>
+            </div>
+            <div class="email-box">
+                <input type="email" id="email" name="email" placeholder="email.address@gmail.com" required>
+                <i data-feather="mail"></i>
+            </div>
+            <button type="submit" onclick="">Add</button>
+        </form>
+        <p id="add-contact-result">Contact Added Succesfully</p>
+
+    </dialog>
     
     <script>
         feather.replace();
