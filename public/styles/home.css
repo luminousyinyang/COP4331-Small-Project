@@ -193,7 +193,7 @@ body {
     row-gap: 30px;
 }
 
-#contacts-grid div {
+#contacts-grid .contact-card {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -204,12 +204,70 @@ body {
     box-shadow: 0 0 5px var(--color4);
 
     transition: transform 0.2s ease-in;
+    /* cursor: pointer; */
+}
+
+#contacts-grid .contact-card:hover {
+    transform: scale(1.05, 1.05);
+}
+
+.contact-card {
+    font-size: 0.85rem;
+}
+
+.contact-card .grid-form {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+}
+
+.grid-form svg {
+    position: absolute;
+    width: 20px;
+    height: 20px;
     cursor: pointer;
 }
 
-#contacts-grid div:hover {
-    transform: scale(1.05, 1.05);
+.grid-form svg:nth-of-type(1) {
+    top: 10px;
+    right: 10px;
 }
+
+.grid-form svg:nth-of-type(2) {
+    top: 10px;
+    left: 10px;
+}
+
+.grid-form p {
+    margin: 0;
+}
+
+.grid-form span {
+    width: 60px;
+    height: 60px;
+    background-color: var(--color6);
+    border: 1px solid var(--color6);
+    border-radius: 50%;
+    text-align: center;
+    line-height: 60px;
+}
+
+.grid-form .fullname {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.grid-phone, .grid-email {
+    position: relative;
+    height: 30px;
+    width: 200px;
+}
+
 /* end of contacts-grid */
 
 
