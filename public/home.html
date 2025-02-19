@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./styles/home.css">
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body>
+    <div id="container">
+        <div class="header-content">
+            <h1>Contacts Manager</h1>
+            <div class="user-profile">
+                <p>Peanut Butter</p>
+                <button>Sign Out</button>
+            </div>
+        </div>
+
+        <div class="second-header-content">
+            <div class="search-container">
+                <i data-feather="search"></i>
+                <input type="text" id="search-input" placeholder="Search">
+            </div>
+            <div>
+                <button id="add-contact-btn">Add Contact</button>
+                <i data-feather="plus-circle"></i>
+            </div>
+        </div>
+
+        <div id="contacts-grid">
+            <!-- Placeholder contacts -->
+            <div class="contact-card" data-contact="Contact 1">Contact 1</div>
+            <div class="contact-card" data-contact="Contact 2">Contact 2</div>
+            <div class="contact-card" data-contact="Contact 3">Contact 3</div>
+            <div class="contact-card" data-contact="Contact 4">Contact 4</div>
+            <div class="contact-card" data-contact="Contact 5">Contact 5</div>
+            <div class="contact-card" data-contact="Contact 6">Contact 6</div>
+            <div class="contact-card" data-contact="Contact 7">Contact 7</div>
+            <div class="contact-card" data-contact="Contact 8">Contact 8</div>
+            <div class="contact-card" data-contact="Contact 9">Contact 9</div>
+            <div class="contact-card" data-contact="Contact 10">Contact 9</div>
+        </div>
+
+        <div class="pagination">
+            <button id="prev-page">Prev</button>
+            <span id="page-indicator">Page 1</span>
+            <button id="next-page">Next</button>
+        </div>
+    </div>
+    
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
