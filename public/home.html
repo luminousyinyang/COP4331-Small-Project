@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="./styles/home.css">
+    <script src="./js/home.js" defer></script>
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 
@@ -13,19 +14,21 @@
         <div class="header-content">
             <h1>Contacts Manager</h1>
             <div class="user-profile">
+                <span>PB</span>
                 <p>Peanut Butter</p>
-                <button>Sign Out</button>
+                <i data-feather="log-out"></i>
             </div>
         </div>
 
         <div class="second-header-content">
             <div class="search-container">
                 <i data-feather="search"></i>
-                <input type="text" id="search-input" placeholder="Search">
+                <input type="text" id="search-input" placeholder="Search Contact">
             </div>
-            <div>
+            
+            <div class="add-contact-container">
                 <button id="add-contact-btn">Add Contact</button>
-                <i data-feather="plus-circle"></i>
+                <i id="icon-imHungry" data-feather="plus-circle"></i>
             </div>
         </div>
 
@@ -40,7 +43,6 @@
             <div class="contact-card" data-contact="Contact 7">Contact 7</div>
             <div class="contact-card" data-contact="Contact 8">Contact 8</div>
             <div class="contact-card" data-contact="Contact 9">Contact 9</div>
-            <div class="contact-card" data-contact="Contact 10">Contact 9</div>
         </div>
 
         <div class="pagination">
