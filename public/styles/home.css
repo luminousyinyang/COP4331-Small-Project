@@ -24,7 +24,7 @@ body {
     margin: 0;
     display: flex;
     justify-content: center;
-    height: 935px;
+    height: 960px;
     background-image: radial-gradient(circle 1600px, var(--color3), var(--color4));
 }
 
@@ -238,4 +238,8 @@ body {
     border: 1.5px solid var(--color5);
     background-color: var(--color1);
     color: var(--color5);
+}
+
+.pagination button, .pagination span {
+    margin: 0 0 30px 0;
 }

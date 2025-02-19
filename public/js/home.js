@@ -7,27 +7,21 @@ const greenColor = 'rgb(105, 195, 105)'
 const addContactButton = document.querySelector('#add-contact-btn');
 const addContactIcon = document.querySelector('#icon-imHungry');
 
-addContactButton.addEventListener('mouseenter', () => {
+const defaultStyle = () => {
     addContactButton.style.backgroundColor = color1;
     addContactButton.style.color = color5;
     addContactIcon.style.color = 'black';
-});
+}
 
-addContactButton.addEventListener('mouseleave', () => {
+const hoverStyle = () => {
     addContactButton.style.backgroundColor = color5;
     addContactButton.style.color = color2
     addContactIcon.style.color = greenColor;
-});
+}
+
+addContactButton.addEventListener('mouseenter', defaultStyle);
+addContactButton.addEventListener('mouseleave', hoverStyle);
 
 // Change the button color when mouse hovers over the icon
-addContactIcon.addEventListener('mouseenter', () => {
-    addContactButton.style.backgroundColor = color1;
-    addContactButton.style.color = color5;
-    addContactIcon.style.color = 'black';
-});
-
-addContactIcon.addEventListener('mouseleave', () => {
-    addContactButton.style.backgroundColor = color5;
-    addContactButton.style.color = color2;
-    addContactIcon.style.color = greenColor;
-});
+addContactIcon.addEventListener('mouseenter', defaultStyle);
+addContactIcon.addEventListener('mouseleave', hoverStyle);
