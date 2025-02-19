@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Manager</title>
+    <link rel="stylesheet" href="./styles/postlogin.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Contact Manager</h1>
+            <div class="user-menu">
+                <button id="user-button"></button>
+                
+                <button id="sign-out">Sign Out</button>
+    
+            </div>   
+        </div>
+    </header>
+    <div class="second-header-content">
+        <div class="search-container">
+            <input type="text" id="search-input" placeholder="Search contacts...">
+            <button id="search-button">Search</button>
+        </div>
+        <button id="add-contact-btn">Add Contact +</button>
+    </div>
+    
+    <div class="contact-form-container" id="contact-form">
+        <div class="form-header">
+            <div class="contact-icon" id="contact-icon">?</div>
+            <span class="close-btn" id="close-form">&times;</span>
+        </div>
+        <form id="contact-form-element">
+            <div class="name-fields">
+                <input type="text" style="color:var(--color5)" id="first-name" placeholder="First Name" >
+                <input type="text" style="color:var(--color5)" id="last-name" placeholder="Last Name">
+            </div>
+            <input type="email" style="color:var(--color5)" id="email" placeholder="Email">
+            <input type="tel" style="color:var(--color5)" id="phone" placeholder="Phone">
+            <button id="submit">Add Contact</button>
+        </form>
+    </div>
+    
+    <div class="contacts-grid">
+        <!-- Placeholder contacts -->
+        <div class="contact-card" data-contact="Contact 1">Contact 1</div>
+        <div class="contact-card" data-contact="Contact 2">Contact 2</div>
+        <div class="contact-card" data-contact="Contact 3">Contact 3</div>
+        <div class="contact-card" data-contact="Contact 4">Contact 4</div>
+        <div class="contact-card" data-contact="Contact 5">Contact 5</div>
+        <div class="contact-card" data-contact="Contact 6">Contact 6</div>
+        <div class="contact-card" data-contact="Contact 7">Contact 7</div>
+        <div class="contact-card" data-contact="Contact 8">Contact 8</div>
+        <div class="contact-card" data-contact="Contact 9">Contact 9</div>
+        <div class="contact-card" data-contact="Contact 10">Contact 9</div>
+    </div>
+    <div class="contact-popup" id="contact-popup">
+        <div class="popup-header">
+            <div class="contact-popup-icon" id="popup-icon">?</div>
+            <h2 id="popup-name">Contact Name</h2>
+            <span class="close-btn" id="close-form">&times;</span>
+        </div>
+        <div class="popup-body">
+            <p><strong>Email:</strong> <span id="popup-email"></span></p>
+            <p><strong>Phone:</strong> <span id="popup-phone"></span></p>
+        </div>
+    </div>
+    <div class="pagination">
+        <button id="prev-page">Previous</button>
+        <span id="page-indicator">Page 1</span>
+        <button id="next-page">Next</button>
+    </div>
+    
+    <script src="./js/postlogin.js"></script>
+    <script>
+        
+    </script>
+</body>
+</html>
