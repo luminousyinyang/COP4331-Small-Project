@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="./styles/home.css">
+    <script src="./js/home.js" defer></script>
+    <script src="./js/modal.js" defer></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body>
+    <div id="container">
+        <div class="header-content">
+            <h1>Contacts Manager</h1>
+            <div class="user-profile">
+                <span>PB</span>
+                <p>Peanut Butter</p>
+                <i data-feather="log-out"></i>
+            </div>
+        </div>
+
+        <div class="second-header-content">
+            <div class="search-container">
+                <i data-feather="search"></i>
+                <input type="text" id="search-input" placeholder="Search Contact">
+            </div>
+            
+            <div class="add-contact-container">
+                <button id="add-contact-btn">Add Contact</button>
+                <i id="icon-imHungry" data-feather="plus-circle"></i>
+            </div>
+        </div>
+
+        <div id="contacts-grid">
+            <!-- Placeholder contacts -->
+            <div class="contact-card" data-contact="Contact 1">Contact 1</div>
+            <div class="contact-card" data-contact="Contact 2">Contact 2</div>
+            <div class="contact-card" data-contact="Contact 3">Contact 3</div>
+            <div class="contact-card" data-contact="Contact 4">Contact 4</div>
+            <div class="contact-card" data-contact="Contact 5">Contact 5</div>
+            <div class="contact-card" data-contact="Contact 6">Contact 6</div>
+            <div class="contact-card" data-contact="Contact 7">Contact 7</div>
+            <div class="contact-card" data-contact="Contact 8">Contact 8</div>
+            <div class="contact-card" data-contact="Contact 9">Contact 9</div>
+        </div>
+
+        <div class="pagination">
+            <button id="prev-page">Prev</button>
+            <span id="page-indicator">Page 1</span>
+            <button id="next-page">Next</button>
+        </div>
+    </div>
+
+    <dialog id="modal">
+        <i id="x-modal" data-feather="x"></i>
+        <form id="modal-form" method="dialog">
+            <span><i id="user-icon-placeholder" data-feather="user"></i></span>
+            <div class="fullname">
+                <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
+                <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+            </div>
+            <div class="phone-box">
+                <input type="tel" id="phone-num" name="phone-num" placeholder="(XXX)-XXX-XXXX" required>
+                <i data-feather="phone"></i>
+            </div>
+            <div class="email-box">
+                <input type="email" id="email" name="email" placeholder="email.address@gmail.com" required>
+                <i data-feather="mail"></i>
+            </div>
+            <button type="submit" onclick="">Add</button>
+        </form>
+        <p id="add-contact-result">Placeholder</p>
+
+    </dialog>
+    
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>
