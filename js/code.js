@@ -48,7 +48,7 @@ function doLogin()
 
                 saveCookie();
 
-                window.location.href = "postlogin.html";
+                window.location.href = "home.html";
             }
         };
         xhr.send(jsonPayload);
@@ -154,7 +154,7 @@ function signUp()
 
                 saveCookie();
 
-                window.location.href = "postlogin.html";
+                window.location.href = "home.html";
             }
         };
         xhr.send(jsonPayload);
