@@ -18,7 +18,6 @@
     --color5: #583730;
     --color6: #fefcfc;
     --color7: #e8b782;
-    --color9-green: rgb(0, 107, 0);
     --color8-green: #0a6801;
 
     font-family: "Commissioner", sans-serif;
@@ -151,11 +150,6 @@ body {
     
     transition: all 0.25s ease-in-out;
     cursor: pointer;
-}
-.add-contact-container button:hover {
-    /* border: 1.5px solid var(--color5);
-    background-color: var(--color1);
-    color: var(--color5); */
 }
 
 .add-contact-container svg {
@@ -305,34 +299,46 @@ body {
 
 
 /* start of add-contact modal */
-#modal {
-    width: 380px;
-    height: 440px;
+.modal {
+    width: 420px;
+    height: 500px;
     overflow: hidden;
     border-radius: 5px;
     border: 1px solid var(--color5);
-    background-color: var(--color7);
+    /* background-color: var(--color7); */
+    background-image: linear-gradient(180deg, var(--color5), var(--color7));
     font-family: "Commissioner", sans-serif;
+    padding: 0;
+    box-shadow: 0 0 50px var(--color5);
 }
 
-#modal::backdrop {
+.modal::backdrop {
     background: rgba(19, 24, 19, 0.674);
 }
 
-#x-modal {
+.modal .header {
+    position: relative;
     display: flex;
-    justify-self: end;
+    justify-content: space-between;
+    background-color: var();
+    margin: 0 0 20px 0;
+    padding: 0 16px;
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+.x-modal {
     width: 30px;
     height: auto;
     transition: all 0.15s ease-in;
     cursor: pointer;
 }
 
-#x-modal:hover {
-    color: rgb(184, 1, 1);
+.x-modal:hover {
+    color: rgb(255, 0, 0);
 }
 
-#modal-form {
+.modal-form {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -341,7 +347,7 @@ body {
     gap: 15px;
 }
 
-#modal-form span {
+.modal-form span {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -356,7 +362,7 @@ body {
     background-color: var(--color6);
 }
 
-#user-icon-placeholder {
+.user-icon-placeholder {
     width: 60px;
     height: 60px;
 }
@@ -371,7 +377,7 @@ body {
     gap: 10px;
 }
 
-#modal-form .phone-box, #modal-form .email-box {
+.modal-form .phone-box, .modal-form .email-box {
     position: relative;
     display: flex;
     justify-content: center;
@@ -388,7 +394,7 @@ body {
     right: 15px;
 }
 
-#modal-form button {
+.modal-form button {
     width: 100px;
     height: 35px;
     border: 1px solid var(--color5);
@@ -400,17 +406,17 @@ body {
     cursor: pointer;
 }
 
-#modal-form button:hover {
+.modal-form button:hover {
     background-color: var(--color8-green);
     border-color: var(--color8-green);
     color: var(--color6);
 }   
 
-#modal-form .fullname input {
+.modal-form .fullname input {
     width: 96.5px;
 }
 
-#modal-form input {
+.modal-form input {
     height: 35px;
     width: 245px;
     font-size: 0.9rem;
@@ -420,13 +426,13 @@ body {
     background-color: var(--color6);
 }
 
-#modal-form input:focus {
+.modal-form input:focus {
     outline: none;
     border-color: blue;
 }
 
-#add-contact-result {
+#add-contact-result, #edit-contact-result {
     display: flex;
     justify-content: center;
-    
+    margin: 12px 0 16px 0;
 }
