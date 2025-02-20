@@ -79,6 +79,7 @@
 
     <!-- Popups/Modals that are not shown on page-->
 
+    <!-- Add contact modal -->
     <dialog id="add-ct-modal" class="modal">
         <div class="header">
             <h2>Add Contact</h2>
@@ -103,6 +104,7 @@
         <p id="add-contact-result">Placeholder</p>
     </dialog>
 
+    <!-- Edit contact modal -->
     <dialog id="edit-ct-modal" class="modal">
         <div class="header">
             <h2>Edit Contact</h2>
@@ -127,13 +129,20 @@
         <p id="edit-contact-result">Placeholder</p>
     </dialog>
 
-    <dialog id="delete-contact-modal">
-        <i class="cancel cancel-icon" data-feather="x"></i>
-        <h2>Delete Contact</h2>
-        <i data-feather="alert-triangle"></i>
-        <p>Are you sure you want to delete this contact?</p>
-        <button class="cancel cancel-button">Cancel</button>
-        <button>Delete</button>
+    <!-- Delete contact modal -->
+    <dialog id="delete-contact-modal" class="delete-modal">
+        <div class="header">
+            <i class="cancel cancel-icon" data-feather="x"></i>
+            <h2>Delete Contact</h2>
+        </div>
+        <div class="modal-body">
+            <i data-feather="alert-triangle"></i>
+            <p>Are you sure you want to delete this contact?</p>
+        </div>
+        <div class="modal-buttons">
+            <button class="cancel cancel-btn">Cancel</button>
+            <button class="confirm-delete-btn">Delete</button>
+        </div>
     </dialog>
 
     <script>

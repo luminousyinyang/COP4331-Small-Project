@@ -21,7 +21,11 @@ closeEditModal.addEventListener('click', () => editContactModal.close());
 
 // Open the delete confirmation popup 
 const deleteContactModal = document.querySelector("#delete-contact-modal");
+
+// Get the icon and button (the two ways to close the delete contact popup)
 const closeDeleteModalList = document.querySelectorAll(".cancel");
+
+// Get all of the delete icons to open the delete contact popup
 const deleteIconsList = document.querySelectorAll('.delete-contact-icon');
 
 deleteIconsList.forEach((icon) => {
