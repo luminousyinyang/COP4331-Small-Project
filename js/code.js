@@ -256,6 +256,7 @@ function retrieveContact()
 
                     let trashIcon = document.createElement("i");
                     trashIcon.setAttribute("data-feather", "trash-2")
+                    trashIcon.className = "delete-contact-icon";
                     form.appendChild(trashIcon);
 
                     let nameInitials = document.createElement("span");
@@ -285,6 +286,7 @@ function retrieveContact()
 
                     let editIcon = document.createElement("i");
                     editIcon.setAttribute("data-feather", "edit");
+                    editIcon.className = "edit-contact-icon";
                     form.appendChild(editIcon);
 
                     card.appendChild(form);
@@ -317,11 +319,32 @@ function retrieveContact()
 	
 }
 
-function deleteContact(firstName, lastName) 
-{
-    document.getElementById("contactDeleteResult").innerHTML = "";
+let contactsGrid = document.getElementById("contacts-grid")
+let currDeleteCard = null;
 
-    let tmp = { FirstName: firstName, LastName:lastName, UserID:userId };
+if (contactsGrid) {
+
+    document.getElementById("contacts-grid").addEventListener("click", function(event) {
+        let deleteIcon = event.target.closest('.delete-contact-icon');
+        if (deleteIcon) {
+            currDeleteCard = deleteIcon.closest('.contact-card');
+            document.getElementById('delete-contact-modal').showModal();
+        }
+    });
+}
+
+
+function deleteContact() 
+{
+    // document.getElementById("contactDeleteResult").innerHTML = "";
+    pLen = currDeleteCard.querySelectorAll('p').length;
+
+    let firstName = currDeleteCard.querySelector('.fullname').querySelectorAll('p')[0].textContent;
+    let lastName = currDeleteCard.querySelector('.fullname').querySelectorAll('p')[1].textContent;
+    let phone = currDeleteCard.querySelectorAll('p')[pLen - 2].textContent;
+    let email = currDeleteCard.querySelectorAll('p')[pLen - 1].textContent;
+
+    let tmp = { FirstName: firstName, LastName:lastName, Phone: phone, Email: email, UserID:userId };
     let jsonPayload = JSON.stringify(tmp);
 
     let url = urlBase + "/delete." + extension;
@@ -336,27 +359,75 @@ function deleteContact(firstName, lastName)
 		{
             if (this.readyState == 4 && this.status == 200) 
 			{
-                document.getElementById("contactDeleteResult").innerHTML = "Contact has been deleted";
+                currDeleteCard.remove();
+                currDeleteCard = null;
+
+                let deleteContactModal = document.querySelector("#delete-contact-modal");
+                deleteContactModal.close();
+                // document.getElementById("contactDeleteResult").innerHTML = "Contact has been deleted";
             }
         };
         xhr.send(jsonPayload);
     } 
 	catch (err) 
 	{
-        document.getElementById("contactDeleteResult").innerHTML = err.message;
+        // document.getElementById("contactDeleteResult").innerHTML = err.message;
     }
 }
 
+
+
+
+// stuff for editing
+
+let currEditCard = null;
+
+if (contactsGrid) {
+    document.getElementById("contacts-grid").addEventListener("click", function(event) {
+        let editIcon = event.target.closest('.edit-contact-icon');
+    
+        if (editIcon) {
+            currEditCard = editIcon.closest('.contact-card');
+    
+            pLen = currEditCard.querySelectorAll('p').length;
+    
+            let firstName = currEditCard.querySelector('.fullname').querySelectorAll('p')[0].textContent;
+            let lastName = currEditCard.querySelector('.fullname').querySelectorAll('p')[1].textContent;
+            let phone = currEditCard.querySelectorAll('p')[pLen - 2].textContent;
+            let email = currEditCard.querySelectorAll('p')[pLen - 1].textContent;
+    
+            document.getElementById('first-name-edit').value = firstName;
+            document.getElementById('last-name-edit').value = lastName;
+            document.getElementById('phone-num-edit').value = phone;
+            document.getElementById('email-edit').value = email;
+
+            document.getElementById('edit-ct-modal').showModal();
+        }
+    });
+}
+
+
+
+
 function updateContact() 
 {
-    let newFirstName = document.getElementById("firstName").value;
-    let newLastName = document.getElementById("lastName").value;
-    let newPhone = document.getElementById("phone").value;
-    let newEmail = document.getElementById("email").value;
+    let newFirstName = document.getElementById("first-name-edit").value;
+    let newLastName = document.getElementById("last-name-edit").value;
+    let newPhone = document.getElementById("phone-num-edit").value;
+    let newEmail = document.getElementById("email-edit").value;
 
-    document.getElementById("contactUpdateResult").innerHTML = "";
+    let nameParts = currEditCard.querySelector('.fullname').querySelectorAll('p');
+    let oldFirstName = nameParts[0].textContent;
+    let oldLastName = nameParts[1].textContent;
 
-    let tmp = { FirstName:newFirstName, LastName:newLastName, Phone:newPhone, Email:newEmail, UserID:userId };
+
+    let pLen = currEditCard.querySelectorAll('p').length;
+    let oldPhone = currEditCard.querySelectorAll('p')[pLen - 2].textContent
+    let oldEmail = currEditCard.querySelectorAll('p')[pLen - 1].textContent
+
+    // document.getElementById("contactUpdateResult").innerHTML = "";
+
+    let tmp = { NewFirstName:newFirstName, NewLastName:newLastName, NewPhone:newPhone, NewEmail:newEmail, OldFirstName:oldFirstName, OldLastName:oldLastName, OldPhone:oldPhone, OldEmail:oldEmail, UserID:userId };
     let jsonPayload = JSON.stringify(tmp);
 
     let url = urlBase + "/update." + extension;
@@ -370,13 +441,22 @@ function updateContact()
 		{
             if (this.readyState == 4 && this.status == 200) 
 			{
-                document.getElementById("contactUpdateResult").innerHTML = "Contact has been updated";
+                nameParts[0].textContent = newFirstName;
+                nameParts[1].textContent = newLastName;
+
+                let initialsSpan = currEditCard.querySelector('span');
+                initialsSpan.textContent = newFirstName.charAt(0) + newLastName.charAt(0);
+
+                currEditCard.querySelectorAll('p')[pLen - 2].textContent = newPhone;
+                currEditCard.querySelectorAll('p')[pLen - 1].textContent = newEmail;
+
+                // document.getElementById("contactUpdateResult").innerHTML = "Contact has been updated";
             }
         };
         xhr.send(jsonPayload);
     } 
 	catch (err) 
 	{
-        document.getElementById("contactUpdateResult").innerHTML = err.message;
+        // document.getElementById("contactUpdateResult").innerHTML = err.message;
     }
 }

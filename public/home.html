@@ -8,7 +8,7 @@
     <script src="./js/home.js" defer></script>
     <script src="./js/modal.js" defer></script>
     <script type="text/javascript" src="../js/md5.js"></script>
-    <script type="text/javascript" src="../js/code.js"></script>
+    <script type="text/javascript" src="../js/code.js" defer></script>
     <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function() 
         {
@@ -121,18 +121,18 @@
         <form class="modal-form" method="dialog">
             <span><i class="user-icon-placeholder" data-feather="user"></i></span>
             <div class="fullname">
-                <input type="text" id="first-name" name="first-name" placeholder="First Name" required>
-                <input type="text" id="last-name" name="last-name" placeholder="Last Name" required>
+                <input type="text" id="first-name-edit" name="first-name" placeholder="First Name" required>
+                <input type="text" id="last-name-edit" name="last-name" placeholder="Last Name" required>
             </div>
             <div class="phone-box">
-                <input type="tel" id="phone-num" name="phone-num" placeholder="(XXX)-XXX-XXXX" required>
+                <input type="tel" id="phone-num-edit" name="phone-num" placeholder="(XXX)-XXX-XXXX" required>
                 <i data-feather="phone"></i>
             </div>
             <div class="email-box">
-                <input type="email" id="email" name="email" placeholder="email.address@gmail.com" required>
+                <input type="email" id="email-edit" name="email" placeholder="email.address@gmail.com" required>
                 <i data-feather="mail"></i>
             </div>
-            <button type="submit" onclick="">Update</button>
+            <button type="submit" onclick="updateContact();">Update</button>
         </form>
         <p id="edit-contact-result">Placeholder</p>
     </dialog>
@@ -148,8 +148,8 @@
             <p>Are you sure you want to delete this contact?</p>
         </div>
         <div class="modal-buttons">
-            <button class="cancel cancel-btn">Cancel</button>
-            <button class="confirm-delete-btn">Delete</button>
+            <button type="submit" class="cancel cancel-btn">Cancel</button>
+            <button type="submit" class="confirm-delete-btn" onclick="deleteContact();">Delete</button>
         </div>
     </dialog>
 

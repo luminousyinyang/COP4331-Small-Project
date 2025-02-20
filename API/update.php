@@ -3,10 +3,15 @@
     $inData = getRequestInfo();
 
     $UserID = $inData["UserID"];
-    $FirstName = $inData["FirstName"];
-    $LastName = $inData["LastName"];
-    $Phone = $inData["Phone"];
-    $Email = $inData["Email"];
+    $NewFirstName = $inData["NewFirstName"];
+    $NewLastName = $inData["NewLastName"];
+    $NewPhone = $inData["NewPhone"];
+    $NewEmail = $inData["NewEmail"];
+
+    $OldFirstName = $inData["OldFirstName"];
+    $OldLastName = $inData["OldLastName"];
+    $OldPhone = $inData["OldPhone"];
+    $OldEmail = $inData["OldEmail"];
 
 
     $conn = new mysqli("localhost", "Alex", "password", "contact_manager");
@@ -18,8 +23,8 @@
     } 
     else 
     {
-        $stmt = $conn->prepare("UPDATE Contacts SET FirstName=?, LastName=?, Phone=?, Email=? WHERE UserID=? AND FirstName LIKE ?");
-        $stmt->bind_param("ssssis", $FirstName, $LastName, $Phone, $Email, $UserID, $FirstName);
+        $stmt = $conn->prepare("UPDATE Contacts SET FirstName=?, LastName=?, Phone=?, Email=? WHERE UserID=? AND FirstName=? AND LastName=? AND Phone=? AND Email=?");
+        $stmt->bind_param("ssssissss", $NewFirstName, $NewLastName, $NewPhone, $NewEmail, $UserID, $OldFirstName, $OldLastName, $OldPhone, $OldEmail);
 
         if ($stmt->execute()) 
         {
