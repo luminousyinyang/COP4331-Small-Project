@@ -7,6 +7,14 @@
     <link rel="stylesheet" href="./styles/home.css">
     <script src="./js/home.js" defer></script>
     <script src="./js/modal.js" defer></script>
+    <script type="text/javascript" src="../js/md5.js"></script>
+    <script type="text/javascript" src="../js/code.js"></script>
+    <script type="text/javascript">
+        document.addEventListener('DOMContentLoaded', function() 
+        {
+            readCookie();
+        }, false);
+    </script>
     <script src="https://unpkg.com/feather-icons"></script>
 </head>
 
@@ -24,7 +32,7 @@
         <div class="second-header-content">
             <div class="search-container">
                 <i data-feather="search"></i>
-                <input type="text" id="search-input" placeholder="Search Contact">
+                <input type="text" id="search-input" placeholder="Search Contact" oninput="retrieveContact()">
             </div>
             
             <div class="add-contact-container">
@@ -99,7 +107,7 @@
                 <input type="email" id="email" name="email" placeholder="email.address@gmail.com" required>
                 <i data-feather="mail"></i>
             </div>
-            <button type="submit" onclick="">Add</button>
+            <button type="submit" onclick="createContact();">Add</button>
         </form>
         <p id="add-contact-result">Placeholder</p>
     </dialog>
