@@ -76,8 +76,8 @@ function readCookie()
     let splits = data.split(",");
     for ( var i = 0; i < splits.length; i++)
     {
-        let thsOne = splits[i].trim;
-        let tokens = thisOne.splut("=");
+        let thisOne = splits[i].trim();
+		let tokens = thisOne.split("=");
         if(tokens[0] == "firstName")
         {
             firstName = tokens[1];
@@ -170,12 +170,12 @@ function signUp()
 
 function createContact()
 {
-	let newFirstName = document.getElementById("firstName").value;
-    let newLastName = document.getElementById("lastName").value;
-    let newPhone = document.getElementById("phone").value;
+	let newFirstName = document.getElementById("first-name").value;
+    let newLastName = document.getElementById("last-name").value;
+    let newPhone = document.getElementById("phone-num").value;
     let newEmail = document.getElementById("email").value;
 
-	document.getElementById("contactAddResult").innerHTML = "";
+	document.getElementById("add-contact-result").innerHTML = "";
 
 	let tmp = { FirstName:newFirstName, LastName:newLastName, Phone:newPhone, Email:newEmail, UserID:userId };
 	let jsonPayload = JSON.stringify( tmp );
@@ -191,24 +191,41 @@ function createContact()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+				document.getElementById("add-contact-result").innerHTML = "Contact has been added";
 			}
 		};
 		xhr.send(jsonPayload);
 	}
 	catch(err)
 	{
-		document.getElementById("contactAddResult").innerHTML = err.message;
+		document.getElementById("add-contact-result").innerHTML = err.message;
 	}
 	
 }
 
 function retrieveContact()
 {
-	let srch = document.getElementById("searchText").value;
-	document.getElementById("contactSearchResult").innerHTML = "";
+    // reference
+    // <div id="contacts-grid">
+    //         <!-- Placeholder contacts -->
+    //         <div class="contact-card">
+    //             <form class="grid-form">
+    //                 <i data-feather="trash-2"></i>
+    //                 <span>PB</span>
+    //                 <div class="fullname">
+    //                     <p>Peanut</p>
+    //                     <p>Butter</p>
+    //                 </div>
+    //                 <p>(407)899-9999</p>
+    //                 <p>bobsburgers@gmail.com</p>
+    //                 <i data-feather="edit"></i>
+    //             </form>
+    //         </div>
+
+	let srch = document.getElementById("search-input").value;
+	// document.getElementById("contactSearchResult").innerHTML = "";
 	
-	let contactList = "";
+	// let contactList = "";
 
 	let tmp = {search:srch,UserId:userId};
 	let jsonPayload = JSON.stringify( tmp );
@@ -224,26 +241,78 @@ function retrieveContact()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
+				// document.getElementById("contactSearchResult").innerHTML = "Contact(s) has been retrieved";
 				let jsonObject = JSON.parse( xhr.responseText );
+
+                let contactsGrid = document.getElementById("contacts-grid");
+                contactsGrid.innerHTML = "";
+
+                jsonObject.results.forEach(element => {
+                    let card = document.createElement("div");
+                    card.className = "contact-card";
+
+                    let form = document.createElement("form");
+                    form.className = "grid-form"
+
+                    let trashIcon = document.createElement("i");
+                    trashIcon.setAttribute("data-feather", "trash-2")
+                    form.appendChild(trashIcon);
+
+                    let nameInitials = document.createElement("span");
+                    nameInitials.textContent = element.FirstName[0] + element.LastName[0];
+                    form.appendChild(nameInitials);
+
+                    let nameDiv = document.createElement("div");
+                    nameDiv.className = "fullname";
+
+                    let firstNameP = document.createElement("p");
+                    firstNameP.textContent = element.FirstName;
+                    nameDiv.appendChild(firstNameP);
+
+                    let lastNameP = document.createElement("p");
+                    lastNameP.textContent = element.LastName;
+                    nameDiv.appendChild(lastNameP);
+
+                    form.appendChild(nameDiv);
+
+                    let phoneP = document.createElement("p");
+                    phoneP.textContent = element.Phone;
+                    form.appendChild(phoneP);
+
+                    let emailP = document.createElement("p");
+                    emailP.textContent = element.Email;
+                    form.appendChild(emailP);
+
+                    let editIcon = document.createElement("i");
+                    editIcon.setAttribute("data-feather", "edit");
+                    form.appendChild(editIcon);
+
+                    card.appendChild(form);
+                    contactsGrid.appendChild(card);
+
+                });
+                feather.replace();
 				
-				for( let i=0; i<jsonObject.results.length; i++ )
-				{
-					contactList += jsonObject.results[i];
-					if( i < jsonObject.results.length - 1 )
-					{
-						colorList += "<br />\r\n";
-					}
-				}
+				// for( let i=0; i<jsonObject.results.length; i++ )
+				// {
+				// 	contactList += jsonObject.results[i];
+				// 	if( i < jsonObject.results.length - 1 )
+				// 	{
+				// 		colorList += "<br />\r\n";
+				// 	}
+				// }
 				
-				document.getElementsByTagName("p")[0].innerHTML = contactList;
+				// document.getElementsByTagName("p")[0].innerHTML = contactList;
 			}
 		};
 		xhr.send(jsonPayload);
+        // if (window.feather) {
+        //     feather.replace();
+        // }
 	}
 	catch(err)
 	{
-		document.getElementById("contactSearchResult").innerHTML = err.message;
+		// document.getElementById("contactSearchResult").innerHTML = err.message;
 	}
 	
 }
