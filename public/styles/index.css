@@ -1,33 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 /* 
-    color1: yellow orange with high transparency
+    color1: grey with high transparency
     color2: pale white
-    color3: light yellow orange
-    color4: papaya 
-    color5: roasted brown
-    color6: white
+    color3: mountain white
+    color4: blue jeans
+    color5: dark indigo
+    color6: darker blue jeans
+    color7: yellow gold
+    color8: ocean blue
 */
 :root {
-    --color1: #f9c48b2f;
+    --color1: #44444400;
     --color2: #ebeae8;
-    --color3: #f1cca5b7;
-    --color4: #aa5c52;
-    --color5: #583730;
-    --color6: #fefcfc;
-
+    --color3: #D6DAE6;
+    --color4: #47628d;
+    --color5: #1d2c4b;
+    --color6: #314870;
+    --color7: #e8b782;
+    --color8: #00314F;
+    
     font-family: "Commissioner", sans-serif;
     box-sizing: border-box;
 }
 
-
 body {
-    display: flex;              /* Align the entire container in the center */
+    display: flex;              
     justify-content: center;        
     align-items: center;       
 
     min-height: 100vh;
-    /* background-image: linear-gradient(220deg, var(--color4), var(--color3), var(--color4)); */
     background-image: radial-gradient(circle, var(--color3), var(--color4));
 }
 
@@ -39,8 +41,7 @@ body {
     display: flex;
     align-items: center;
 
-    box-shadow: 5px 5px 20px var(--color4);
-    background-color: var(--color1);
+    box-shadow: 5px 5px 20px var(--color6);
     color: var(--color5);
 
     overflow: hidden;
@@ -101,6 +102,8 @@ body {
     border-radius: 5px;
     background-color: var(--color2);
     padding: 2px 10px;
+
+    box-shadow: 1.5px 3px 3px var(--color4);
 }
 
 .input-box input:focus {
@@ -116,13 +119,14 @@ body {
     font-size: 1em;
     transition: all 0.2s ease-in;
     cursor: pointer;
+
+    box-shadow: 0 3px 2px var(--color4);
 }
 
 .input-box button:hover {
     border: 1.5px solid var(--color5);
     background-color: var(--color1);
     color: var(--color5);
-    /* transform: scale(1.02, 1.02); */
 }
 
 .input-box button, .input-box p { 

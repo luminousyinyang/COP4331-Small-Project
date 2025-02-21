@@ -1,22 +1,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 /* 
-    color1: yellow orange with high transparency
+    color1: ocean blue
     color2: pale white
-    color3: light yellow orange with little transparency
-    color4: papaya 
-    color5: roasted brown
-    color6: white
-    color7: light yellow no transparency
+    color3: mountain white
+    color4: blue jeans
+    color5: dark indigo
+    color6: darker blue jeans
+    color7: yellow gold
     color8: darkish green 
+    color9: red
 */
 :root {
-    --color1: #f9c48b2f;
+    --color1: #00314F;
     --color2: #ebeae8;
-    --color3: #f1cca5b7;
-    --color4: #aa5c52;
-    --color5: #583730;
-    --color6: #fefcfc;
+    --color3: #D6DAE6;
+    --color4: #47628d;
+    --color5: #1d2c4b;
+    --color6: #314870;
     --color7: #e8b782;
     --color8-green: #0a6801;
     --color9-red: #9e0202;
@@ -199,7 +200,6 @@ body {
     box-shadow: 0 0 5px var(--color4);
 
     transition: transform 0.2s ease-in;
-    /* cursor: pointer; */
 }
 
 #contacts-grid .contact-card:hover {
@@ -245,8 +245,8 @@ body {
 .grid-form span {
     width: 60px;
     height: 60px;
-    background-color: var(--color6);
-    border: 1px solid var(--color6);
+    background-color: var(--color2);
+    border: 1px solid var(--color5);
     border-radius: 50%;
     text-align: center;
     line-height: 60px;
@@ -306,7 +306,6 @@ body {
     overflow: hidden;
     border-radius: 5px;
     border: 1px solid var(--color5);
-    /* background-color: var(--color7); */
     background-image: linear-gradient(180deg, var(--color5), var(--color7));
     font-family: "Commissioner", sans-serif;
     padding: 0;
@@ -360,12 +359,13 @@ body {
     line-height: 140px;
     font-size: 2rem;
     margin-bottom: 10px;
-    background-color: var(--color6);
+    background-color: var(--color2);
 }
 
 .user-icon-placeholder {
     width: 60px;
     height: 60px;
+    color: var(--color6);
 }
 
 .fullname > *, .phone-box > *, .email-box > *{
@@ -410,7 +410,7 @@ body {
 .modal-form button:hover {
     background-color: var(--color8-green);
     border-color: var(--color8-green);
-    color: var(--color6);
+    color: var(--color2);
 }   
 
 .modal-form .fullname input {
@@ -422,9 +422,9 @@ body {
     width: 245px;
     font-size: 0.9rem;
     padding: 0 20px;
-    border: 1.5px solid var(--color6);
+    border: 1.5px solid var(--color2);
     border-radius: 5px;
-    background-color: var(--color6);
+    background-color: var(--color2);
 }
 
 .modal-form input:focus {
@@ -440,20 +440,17 @@ body {
 
 /* unique edits to the edit contact modal */
 #edit-ct-modal {
-    background-image: linear-gradient(180deg, var(--color4), var(--color7));
-}
-
-#x-edit-modal:hover {
-    color: black;
+    background-image: linear-gradient(180deg, var(--color1), var(--color3));
 }
 
 #edit-ct-modal .modal-form > button {
-    background-color: var(--color4);
-    border-color: var(--color4);
+    background-color: var(--color1);
+    border-color: var(--color1);
 }
 
 #edit-ct-modal .modal-form > button:hover {
     background-color: var(--color8-green);
+    border-color: var(--color8-green);
 }
 
 /* end of add-contact and edit-contact modal (Practically the same) */

@@ -1,6 +1,6 @@
-const color1 = '#f9c48b2f';
+const color1 = '#D6DAE6';
 const color2 = '#ebeae8';
-const color5 = '#583730';
+const color5 = '#1d2c4b';
 const greenColor = 'rgb(105, 195, 105)'
 
 // Change the icon color when mouse hovers over the button
