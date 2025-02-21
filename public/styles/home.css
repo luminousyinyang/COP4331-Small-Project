@@ -12,7 +12,7 @@
     color9: red
 */
 :root {
-    --color1: #00314F;
+    --color1: #07c4f811;
     --color2: #ebeae8;
     --color3: #D6DAE6;
     --color4: #47628d;
@@ -41,6 +41,7 @@ body {
     margin: 10px 0 0 0;
     height: auto;
 
+    background-color: var(--color1);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     

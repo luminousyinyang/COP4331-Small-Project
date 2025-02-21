@@ -11,7 +11,7 @@
     color8: ocean blue
 */
 :root {
-    --color1: #44444400;
+    --color1: #07c4f811;
     --color2: #ebeae8;
     --color3: #D6DAE6;
     --color4: #47628d;
@@ -40,7 +40,7 @@ body {
 
     display: flex;
     align-items: center;
-
+    background-color: var(--color1);
     box-shadow: 5px 5px 20px var(--color6);
     color: var(--color5);
 
@@ -125,7 +125,7 @@ body {
 
 .input-box button:hover {
     border: 1.5px solid var(--color5);
-    background-color: var(--color1);
+    background-color: var(--color9);
     color: var(--color5);
 }
 
