@@ -24,6 +24,15 @@
     box-sizing: border-box;
 }
 
+/* all buttons */
+button {
+    transition: all 0.3 ease;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
 body {
     display: flex;              
     justify-content: center;        
@@ -205,13 +214,12 @@ body {
     border-radius: 10px;
     border-color: var(--color2);
     cursor: pointer;
-    transition: all 0.2s ease-in;
+    transition: all 0.3s ease-in;
 }
 
 .slider button:hover {
     background-color: var(--color2);
     color: var(--color5);
-    transform: scale(1.05, 1.05);
 }
 
 .welcome, .welcome-back {
