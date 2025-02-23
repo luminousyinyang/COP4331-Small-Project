@@ -255,7 +255,7 @@ body {
 }
 
 /* Mobile */
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 838px) {
     body {
         display: flex;              
         justify-content: center;        
