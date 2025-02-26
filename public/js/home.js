@@ -33,9 +33,7 @@ function validatePhoneNumber(phoneNumber) {
     return phonePattern.test(phoneNumber);
   }
   
-  /**
-   * Shows an error popup for invalid phone number
-   */
+//Shows an error popup for invalid phone number
   function showPhoneError(inputId, errorId) {
     let errorElement = document.getElementById(errorId);
     
@@ -66,7 +64,6 @@ function validatePhoneNumber(phoneNumber) {
   }
   
   // Format phone number as user types
-  
   function formatPhoneNumber(input) {
     // Remove all non-digit characters
     let value = input.value.replace(/\D/g, '');
