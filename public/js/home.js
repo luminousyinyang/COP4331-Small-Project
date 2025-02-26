@@ -26,8 +26,6 @@ addContactButton.addEventListener('mouseleave', hoverStyle);
 addContactIcon.addEventListener('mouseenter', defaultStyle);
 addContactIcon.addEventListener('mouseleave', hoverStyle);
 
-// Add this code to the end of your home.js file
-
 /**
  * Validates a phone number against the format (123)-456-7890
  */
