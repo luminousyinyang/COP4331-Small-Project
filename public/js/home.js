@@ -51,57 +51,62 @@ function formatPhoneNumber(input) {
   input.value = phoneNumber;
 }
 
-// Add event listeners to phone inputs
-document.addEventListener('DOMContentLoaded', function() {
-  // For the add contact form
+// Validate phone format
+function validatePhoneFormat(phoneValue) {
+  const phonePattern = /^\(\d{3}\)-\d{3}-\d{4}$/;
+  return phonePattern.test(phoneValue);
+}
+
+// Add validation to existing functions
+function validateAndCreateContact() {
   const phoneInput = document.getElementById('phone-num');
+  if (!validatePhoneFormat(phoneInput.value)) {
+    document.getElementById('add-contact-result').textContent = 'Please enter a valid phone number: (XXX)-XXX-XXXX';
+    document.getElementById('add-contact-result').style.color = 'red';
+    return false;
+  }
+  // If valid, continue with original function
+  return createContact();
+}
+
+function validateAndUpdateContact() {
+  const phoneEditInput = document.getElementById('phone-num-edit');
+  if (!validatePhoneFormat(phoneEditInput.value)) {
+    document.getElementById('edit-contact-result').textContent = 'Please enter a valid phone number: (XXX)-XXX-XXXX';
+    document.getElementById('edit-contact-result').style.color = 'red';
+    return false;
+  }
+  // If valid, continue with original function
+  return updateContact();
+}
+
+// Initialize after DOM loads
+document.addEventListener('DOMContentLoaded', function() {
+  // Add formatters to inputs
+  const phoneInput = document.getElementById('phone-num');
+  const phoneEditInput = document.getElementById('phone-num-edit');
+  
   if (phoneInput) {
     phoneInput.addEventListener('input', function() {
       formatPhoneNumber(this);
     });
   }
   
-  // For the edit contact form
-  const phoneEditInput = document.getElementById('phone-num-edit');
   if (phoneEditInput) {
     phoneEditInput.addEventListener('input', function() {
       formatPhoneNumber(this);
     });
   }
-});
-
-// Function to validate phone format before submission
-function validatePhoneFormat(phoneValue) {
-  // Check if phone matches the format (XXX)-XXX-XXXX
-  const phonePattern = /^\(\d{3}\)-\d{3}-\d{4}$/;
-  return phonePattern.test(phoneValue);
-}
-
-// Override form submission to enforce phone format
-document.addEventListener('DOMContentLoaded', function() {
-  // For the add contact form
-  const addForm = document.querySelector('#add-ct-modal .modal-form');
-  if (addForm) {
-    addForm.addEventListener('submit', function(event) {
-      const phoneInput = document.getElementById('phone-num');
-      if (!validatePhoneFormat(phoneInput.value)) {
-        event.preventDefault();
-        document.getElementById('add-contact-result').textContent = 'Please enter a valid phone number: (XXX)-XXX-XXXX';
-        document.getElementById('add-contact-result').style.color = 'red';
-      }
-    });
+  
+  // Replace onclick handlers
+  const addButton = document.querySelector('#add-ct-modal button[type="submit"]');
+  const editButton = document.querySelector('#edit-ct-modal button[type="submit"]');
+  
+  if (addButton) {
+    addButton.onclick = validateAndCreateContact;
   }
   
-  // For the edit contact form
-  const editForm = document.querySelector('#edit-ct-modal .modal-form');
-  if (editForm) {
-    editForm.addEventListener('submit', function(event) {
-      const phoneEditInput = document.getElementById('phone-num-edit');
-      if (!validatePhoneFormat(phoneEditInput.value)) {
-        event.preventDefault();
-        document.getElementById('edit-contact-result').textContent = 'Please enter a valid phone number: (XXX)-XXX-XXXX';
-        document.getElementById('edit-contact-result').style.color = 'red';
-      }
-    });
+  if (editButton) {
+    editButton.onclick = validateAndUpdateContact;
   }
 });
