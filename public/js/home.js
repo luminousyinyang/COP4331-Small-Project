@@ -26,9 +26,8 @@ addContactButton.addEventListener('mouseleave', hoverStyle);
 addContactIcon.addEventListener('mouseenter', defaultStyle);
 addContactIcon.addEventListener('mouseleave', hoverStyle);
 
-/**
- * Validates a phone number against the format (123)-456-7890
- */
+//Validates a phone number against the format (123)-456-7890
+
 function validatePhoneNumber(phoneNumber) {
     const phonePattern = /^\(\d{3}\)-\d{3}-\d{4}$/;
     return phonePattern.test(phoneNumber);
