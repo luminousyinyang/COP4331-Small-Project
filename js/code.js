@@ -27,7 +27,7 @@ function doLogin()
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     try
     {
         xhr.onreadystatechange = function()
@@ -101,10 +101,10 @@ function readCookie()
 
 function doLogout()
 {
-    userId = 0;
-    firstName = "";
-    lastName = "";
-    document.cookie = "firstName = ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
+    console.log("Logout function called");
+    document.cookie = "firstName =; expires =Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+    document.cookie = "lastName =; expires =Thu, 01 Jan 1970 00:00:00 GMT; path=/";
+    document.cookie = "userId =; expires =Thu, 01 Jan 1970 00:00:00 GMT; path=/";
     window.location.href = "index.html"; 
 }
 
@@ -132,7 +132,7 @@ function signUp()
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
 
     try
     {
@@ -184,7 +184,7 @@ function createContact()
 	
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
 	try
 	{
 		xhr.onreadystatechange = function() 
@@ -234,7 +234,7 @@ function retrieveContact()
 	
 	let xhr = new XMLHttpRequest();
 	xhr.open("POST", url, true);
-	xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+	xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
 	try
 	{
 		xhr.onreadystatechange = function() 
@@ -328,7 +328,7 @@ function deleteContact(firstName, lastName)
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
 
     try 
 	{
@@ -363,7 +363,7 @@ function updateContact()
 
     let xhr = new XMLHttpRequest();
     xhr.open("POST", url, true);
-    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    xhr.setRequestHeader("Content-Type", "application/json; charset=UTF-8");
     try 
 	{
         xhr.onreadystatechange = function () 
