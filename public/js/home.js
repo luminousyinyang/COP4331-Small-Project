@@ -101,7 +101,8 @@ document.addEventListener('DOMContentLoaded', function() {
   // Replace onclick handlers
   const addButton = document.querySelector('#add-ct-modal button[type="submit"]');
   const editButton = document.querySelector('#edit-ct-modal button[type="submit"]');
-  
+  const logOutButton = document.querySelector('.log-out-button');
+
   if (addButton) {
     addButton.onclick = validateAndCreateContact;
   }
@@ -109,4 +110,11 @@ document.addEventListener('DOMContentLoaded', function() {
   if (editButton) {
     editButton.onclick = validateAndUpdateContact;
   }
+  
+  if(logOutButton)
+    {
+      logOutButton.addEventListener('click', doLogout);
+      console.log("Button clicked!");
+    }
+
 });
