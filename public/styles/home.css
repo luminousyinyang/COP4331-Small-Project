@@ -1,28 +1,37 @@
 @import url('https://fonts.googleapis.com/css2?family=Commissioner:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 /* 
-    color1: yellow orange with high transparency
+    color1: ocean blue
     color2: pale white
-    color3: light yellow orange with little transparency
-    color4: papaya 
-    color5: roasted brown
-    color6: white
-    color7: light yellow no transparency
+    color3: mountain white
+    color4: blue jeans
+    color5: dark indigo
+    color6: darker blue jeans
+    color7: yellow gold
     color8: darkish green 
+    color9: red
 */
 :root {
-    --color1: #f9c48b2f;
+    --color1: #07c4f811;
     --color2: #ebeae8;
-    --color3: #f1cca5b7;
-    --color4: #aa5c52;
-    --color5: #583730;
-    --color6: #fefcfc;
+    --color3: #D6DAE6;
+    --color4: #47628d;
+    --color5: #1d2c4b;
+    --color6: #314870;
     --color7: #e8b782;
-    --color9-green: rgb(0, 107, 0);
     --color8-green: #0a6801;
+    --color9-red: #9e0202;
 
     font-family: "Commissioner", sans-serif;
     box-sizing: border-box;
+}
+
+/* all buttons */
+button {
+    transition: all 0.3 ease;
+}
+button:active {
+    transform: scale(0.95);
 }
 
 body {
@@ -40,6 +49,7 @@ body {
     margin: 10px 0 0 0;
     height: auto;
 
+    background-color: var(--color1);
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     
@@ -152,11 +162,6 @@ body {
     transition: all 0.25s ease-in-out;
     cursor: pointer;
 }
-.add-contact-container button:hover {
-    /* border: 1.5px solid var(--color5);
-    background-color: var(--color1);
-    color: var(--color5); */
-}
 
 .add-contact-container svg {
     position: absolute;
@@ -204,7 +209,6 @@ body {
     box-shadow: 0 0 5px var(--color4);
 
     transition: transform 0.2s ease-in;
-    /* cursor: pointer; */
 }
 
 #contacts-grid .contact-card:hover {
@@ -250,8 +254,8 @@ body {
 .grid-form span {
     width: 60px;
     height: 60px;
-    background-color: var(--color6);
-    border: 1px solid var(--color6);
+    background-color: var(--color2);
+    border: 1px solid var(--color5);
     border-radius: 50%;
     text-align: center;
     line-height: 60px;
@@ -304,35 +308,46 @@ body {
 
 
 
-/* start of add-contact modal */
-#modal {
-    width: 380px;
-    height: 440px;
+/* start of add-contact and edit-contact modal (Practically the same) */
+.modal {
+    width: 420px;
+    height: 500px;
     overflow: hidden;
     border-radius: 5px;
     border: 1px solid var(--color5);
-    background-color: var(--color7);
+    background-image: linear-gradient(180deg, var(--color5), var(--color7));
     font-family: "Commissioner", sans-serif;
+    padding: 0;
+    box-shadow: 0 0 50px var(--color5);
 }
 
-#modal::backdrop {
+.modal::backdrop {
     background: rgba(19, 24, 19, 0.674);
 }
 
-#x-modal {
+.modal .header {
+    position: relative;
     display: flex;
-    justify-self: end;
+    justify-content: space-between;
+    background-color: var();
+    margin: 0 0 20px 0;
+    padding: 0 16px;
+    color: white;
+    border-bottom: 1px solid white;
+}
+
+.x-modal {
     width: 30px;
     height: auto;
     transition: all 0.15s ease-in;
     cursor: pointer;
 }
 
-#x-modal:hover {
-    color: rgb(184, 1, 1);
+.x-modal:hover {
+    color: rgb(255, 0, 0);
 }
 
-#modal-form {
+.modal-form {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -341,7 +356,7 @@ body {
     gap: 15px;
 }
 
-#modal-form span {
+.modal-form span {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -353,12 +368,13 @@ body {
     line-height: 140px;
     font-size: 2rem;
     margin-bottom: 10px;
-    background-color: var(--color6);
+    background-color: var(--color2);
 }
 
-#user-icon-placeholder {
+.user-icon-placeholder {
     width: 60px;
     height: 60px;
+    color: var(--color6);
 }
 
 .fullname > *, .phone-box > *, .email-box > *{
@@ -371,7 +387,7 @@ body {
     gap: 10px;
 }
 
-#modal-form .phone-box, #modal-form .email-box {
+.modal-form .phone-box, .modal-form .email-box {
     position: relative;
     display: flex;
     justify-content: center;
@@ -388,7 +404,7 @@ body {
     right: 15px;
 }
 
-#modal-form button {
+.modal-form button {
     width: 100px;
     height: 35px;
     border: 1px solid var(--color5);
@@ -400,33 +416,214 @@ body {
     cursor: pointer;
 }
 
-#modal-form button:hover {
+.modal-form button:hover {
     background-color: var(--color8-green);
     border-color: var(--color8-green);
-    color: var(--color6);
+    color: var(--color2);
 }   
 
-#modal-form .fullname input {
+.modal-form .fullname input {
     width: 96.5px;
 }
 
-#modal-form input {
+.modal-form input {
     height: 35px;
     width: 245px;
     font-size: 0.9rem;
     padding: 0 20px;
-    border: 1.5px solid var(--color6);
+    border: 1.5px solid var(--color2);
     border-radius: 5px;
-    background-color: var(--color6);
+    background-color: var(--color2);
 }
 
-#modal-form input:focus {
+.modal-form input:focus {
     outline: none;
     border-color: blue;
 }
 
-#add-contact-result {
+#add-contact-result, #edit-contact-result {
     display: flex;
     justify-content: center;
+    margin: 12px 0 16px 0;
+}
+
+/* unique edits to the edit contact modal */
+#edit-ct-modal {
+    background-image: linear-gradient(180deg, var(--color5),#df8d85);
+}
+
+#edit-ct-modal .modal-form > button {
+    background-color: var(--color5);
+    border-color: var(--color5);
+}
+
+#edit-ct-modal .modal-form > button:hover {
+    background-color: var(--color8-green);
+    border-color: var(--color8-green);
+}
+
+/* end of add-contact and edit-contact modal (Practically the same) */
+
+
+
+/* start of delete popup */
+.delete-modal {
+    position: relative;
+    width: 350px;
+    height: 225px;
+    padding: 0;
+    box-shadow: 0 0 50px rgba(36, 42, 36, 0.484);
+}
+
+.delete-modal::backdrop {
+    background: rgba(16, 19, 16, 0.523);
+}
+
+
+.delete-modal .header {
+    border-bottom: 1px solid rgb(120, 119, 119);
+}
+
+.delete-modal .header h2 {
+    margin: 0;
+    padding: 10px;
+}
+
+.cancel-icon {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    transition: all 0.2s ease-in;
+}
+
+.cancel-icon:hover {
+    transform: scale(1.05, 1.05);
+    color: var(--color9-red);
+}
+
+.delete-modal .modal-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 15px 0;
+}
+
+.modal-body svg {
+    color: var(--color9-red);
+    width: 50px;
+    height: 50px;
+}
+
+.delete-modal .modal-buttons {
+    display: flex;
+    justify-content: space-around;
+}
+
+.modal-buttons button {
+    width: 100px;
+    height: 30px;
+    font-size: 0.9rem;
+    border-radius: 5px;
+    transition: all 0.2s ease-in;
+}
+
+.modal-buttons button:hover {
+    transform: scale(1.05, 1.05);
+}
+
+.modal-buttons .cancel-btn {
+    border: 1px solid var(--color8-green);
+    background-color: var(--color8-green);
+    color: white;
+}
+
+.modal-buttons .confirm-delete-btn {
+    border: 1px solid var(--color9-red);
+    background-color: var(--color9-red);
+    color: white;
+}
+
+.cancel-icon, .modal-buttons button {
+    cursor: pointer;
+}
+
+/* Mobile */
+@media only screen and (max-width: 768px) {
+    body {
+        min-height: 100vh;
+    }
+    #container {
+        height: fit-content;
+        width: 100vw;
+        overflow: visible;
+        margin: 0;
+    }
+
+    .header-content h1 {
+        width: 50%;
+    }
+    .user-profile p {
+        display: none;
+    }
+
     
+    .second-header-content {
+        grid-template-columns: 1.5fr 1fr;
+        justify-items:end;
+        margin: 20px 0;
+    }
+
+    .search-container {
+        width: 100%;
+    }
+
+    .add-contact-container {
+        display: flex;
+        justify-content: end;
+    }
+
+    #add-contact-btn {
+        width: 75%;
+        text-align: start;
+        padding-left: 15px;
+    }
+
+    
+    #contacts-grid {
+        height: auto;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, 1fr);
+    }
+
+    #contacts-grid .contact-card {
+        width: 100%;
+        height: 100px;
+        transition: all 0.3s ease;
+    }
+
+    #contacts-grid .contact-card:hover {
+        transform: none;
+    }
+
+    #contacts-grid .contact-card:active {
+        transform:scale(0.95);
+    }
+    
+    .contact-card .grid-form svg:nth-of-type(2) {
+        top: 10px;
+        left: calc(100% - 60px);
+    }
+
+    .contact-card span {
+        position: absolute;
+        left: 30px;
+    }
+    
+
+    .pagination button, .pagination span {
+        margin: 30px 0;
+    }
+
+
 }
