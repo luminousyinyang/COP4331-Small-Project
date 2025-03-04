@@ -1,43 +1,71 @@
 <?php
-    # Gets necessary data from JS file
+    // Gets necessary data from JS file
     $inData = getRequestInfo();
         
     $searchResults = "";
-    $searchCount = 0;
     
     $conn = new mysqli("localhost", "Alex", "password", "contact_manager");
 
-    # Connect to database
-    if( $conn->connect_error)
-    {
+    if ($conn->connect_error) {
         returnWithError($conn->connect_error);
-    }
-    else
-    {
-        $stmt = $conn->prepare("SELECT FirstName, LastName, Phone, Email FROM Contacts WHERE FirstName LIKE ? AND UserID=?");
-		$firstName = "%" . $inData["search"] . "%";
-		$stmt->bind_param("si", $firstName, $inData["UserId"]);
-		$stmt->execute();
-		
-		$result = $stmt->get_result();
-		
-		while($row = $result->fetch_assoc())
-		{
-			if( $searchCount > 0 )
-			{
-				$searchResults .= ",";
-			}
-			$searchCount++;
-            $searchResults .= '{"FirstName":"' . $row["FirstName"] . '", "LastName":"' . $row["LastName"] . '", "Phone":"' . $row["Phone"] . '", "Email":"' . $row["Email"] . '"}';
+    } else {
+        if (strpos($inData["search"], " ") !== false) {
+			$fullSearch = "%" . $inData["search"] . "%";
 
-		}
+            $split = explode(" ", $inData["search"], 2);
+            $firstName = $split[0];
+            $lastName = "%" . $split[1] . "%";
+            
+            $stmt = $conn->prepare("SELECT FirstName, LastName, Phone, Email FROM Contacts WHERE UserID=? AND ((FirstName=? AND LastName LIKE ?) OR FirstName LIKE ?) ORDER BY LastName, FirstName");
+            $stmt->bind_param("isss", $inData["UserId"], $firstName, $lastName, $fullSearch);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            
+            if ($result->num_rows > 0) {
+                while ($row = $result->fetch_assoc()) {
+                    if (!empty($searchResults)) {
+                        $searchResults .= ",";
+                    }
+					$searchCount++;
+                    $searchResults .= '{"FirstName":"' . $row["FirstName"] . '", "LastName":"' . $row["LastName"] . '", "Phone":"' . $row["Phone"] . '", "Email":"' . $row["Email"] . '"}';
+                }
+            } else {
+                $stmt->close();
+
+                $fullSearch = "%" . $inData["search"] . "%";
+                $stmt = $conn->prepare("SELECT FirstName, LastName, Phone, Email FROM Contacts WHERE UserID=? AND FirstName LIKE ? ORDER BY LastName, FirstName");
+                $stmt->bind_param("is", $inData["UserId"], $fullSearch);
+                $stmt->execute();
+
+                $result = $stmt->get_result();
+                while ($row = $result->fetch_assoc()) {
+                    if (!empty($searchResults)) {
+                        $searchResults .= ",";
+                    }
+					$searchCount++;
+                    $searchResults .= '{"FirstName":"' . $row["FirstName"] . '", "LastName":"' . $row["LastName"] . '", "Phone":"' . $row["Phone"] . '", "Email":"' . $row["Email"] . '"}';
+                }
+            }
+        } else {
+            $fullSearch = "%" . $inData["search"] . "%";
+            $stmt = $conn->prepare("SELECT FirstName, LastName, Phone, Email FROM Contacts WHERE UserID=? AND FirstName LIKE ? ORDER BY LastName, FirstName");
+            $stmt->bind_param("is", $inData["UserId"], $fullSearch);
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            while ($row = $result->fetch_assoc()) {
+                if (!empty($searchResults)) {
+                    $searchResults .= ",";
+                }
+				$searchCount++;
+                $searchResults .= '{"FirstName":"' . $row["FirstName"] . '", "LastName":"' . $row["LastName"] . '", "Phone":"' . $row["Phone"] . '", "Email":"' . $row["Email"] . '"}';
+            }
+        }
 		
-		if( $searchCount == 0 )
+		if ( $searchCount == 0 ) 
 		{
 			returnWithError( "No Records Found" );
-		}
-		else
-		{
+		} else {
 			returnWithInfo( $searchResults );
 		}
 		

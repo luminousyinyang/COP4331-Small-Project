@@ -8,7 +8,6 @@
     $Phone = $inData["Phone"];
     $Email = $inData["Email"];
 
-
     $conn = new mysqli("localhost", "Alex", "password", "contact_manager");
 
     # Connect to database

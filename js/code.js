@@ -18,7 +18,7 @@ function doLogin()
 
     // PLACEHOLDER is for element in index.html that will store
     // username and password, this line clears this information
-    document.getElementById("loginResult").innterHTML = "";
+    document.getElementById("loginResult").innerHTML = "";
 
     let temp = {login:user, password:password};
     let jsonPayload = JSON.stringify(temp);
@@ -96,11 +96,19 @@ function readCookie()
     {
         window.location.href = "index.html";
     }
+    else 
+    {
+        document.getElementById("user-initials").innerText = firstName.charAt(0) + lastName.charAt(0);
+        document.getElementById("user-fullname").innerText = firstName + " " + lastName;
+    }
 
 }
 
 function doLogout()
 {
+    userId = 0;
+    firstName = "";
+    lastName = "";
     console.log("Logout function called");
     document.cookie = "firstName =; expires =Thu, 01 Jan 1970 00:00:00 GMT; path=/";
     document.cookie = "lastName =; expires =Thu, 01 Jan 1970 00:00:00 GMT; path=/";
@@ -175,6 +183,13 @@ function createContact()
     let newPhone = document.getElementById("phone-num").value;
     let newEmail = document.getElementById("email").value;
 
+    // if (!isValidEmail(newEmail.value)) {
+    //   document.getElementById('add-contact-result').textContent = 'Please enter a valid email.';
+    //   document.getElementById('add-contact-result').style.color = 'red';
+    //   document.getElementById("add-contact-result").innerHTML = err.message;
+    //   return;
+    // }
+
 	document.getElementById("add-contact-result").innerHTML = "";
 
 	let tmp = { FirstName:newFirstName, LastName:newLastName, Phone:newPhone, Email:newEmail, UserID:userId };
@@ -191,7 +206,14 @@ function createContact()
 		{
 			if (this.readyState == 4 && this.status == 200) 
 			{
-				document.getElementById("add-contact-result").innerHTML = "Contact has been added";
+				// document.getElementById("add-contact-result").innerHTML = "Contact has been added";
+                document.getElementById("first-name").value = ""
+                document.getElementById("last-name").value = ""
+                document.getElementById("phone-num").value = ""
+                document.getElementById("email").value = ""
+
+                document.getElementById("search-input").value = "";
+                retrieveContact();
 			}
 		};
 		xhr.send(jsonPayload);
@@ -222,7 +244,29 @@ function retrieveContact()
     //             </form>
     //         </div>
 
-	let srch = document.getElementById("search-input").value;
+	let srch = document.getElementById("search-input").value.trim();
+    
+
+
+	// document.getElementById("contactSearchResult").innerHTML = "";
+    // reference
+    // <div id="contacts-grid">
+    //         <!-- Placeholder contacts -->
+    //         <div class="contact-card">
+    //             <form class="grid-form">
+    //                 <i data-feather="trash-2"></i>
+    //                 <span>PB</span>
+    //                 <div class="fullname">
+    //                     <p>Peanut</p>
+    //                     <p>Butter</p>
+    //                 </div>
+    //                 <p>(407)899-9999</p>
+    //                 <p>bobsburgers@gmail.com</p>
+    //                 <i data-feather="edit"></i>
+    //             </form>
+    //         </div>
+
+	// let srch = document.getElementById("search-input").value;
 	// document.getElementById("contactSearchResult").innerHTML = "";
 	
 	// let contactList = "";
@@ -246,6 +290,10 @@ function retrieveContact()
 
                 let contactsGrid = document.getElementById("contacts-grid");
                 contactsGrid.innerHTML = "";
+
+                let pageNum = (document.getElementById("page-indicator").innerText).split(' ')[1];
+                let contactMax = 9 * pageNum;
+                let contactNum = 1;
 
                 jsonObject.results.forEach(element => {
                     let card = document.createElement("div");
@@ -290,7 +338,9 @@ function retrieveContact()
                     form.appendChild(editIcon);
 
                     card.appendChild(form);
-                    contactsGrid.appendChild(card);
+                    if (contactNum <= contactMax && contactNum >= pageNum*9 - 8)
+                        contactsGrid.appendChild(card);
+                    contactNum++;
 
                 });
                 feather.replace();
@@ -373,6 +423,8 @@ function deleteContact()
 	{
         // document.getElementById("contactDeleteResult").innerHTML = err.message;
     }
+
+    retrieveContact();
 }
 
 
@@ -404,6 +456,23 @@ if (contactsGrid) {
             document.getElementById('edit-ct-modal').showModal();
         }
     });
+}
+
+function incrementPage()
+{
+    let pageNum = (document.getElementById("page-indicator").innerText).split(' ')[1];
+    pageNum++;
+    document.getElementById("page-indicator").innerText = "Page " + pageNum;
+    retrieveContact();
+}
+
+function decrementPage()
+{
+    let pageNum = (document.getElementById("page-indicator").innerText).split(' ')[1];
+    if (pageNum > 1)
+        pageNum--;
+    document.getElementById("page-indicator").innerText = "Page " + pageNum;
+    retrieveContact();
 }
 
 

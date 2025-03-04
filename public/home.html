@@ -24,8 +24,8 @@
         <div class="header-content">
             <h1>Contacts Manager</h1>
             <div class="user-profile">
-                <span>PB</span>
-                <p>Peanut Butter</p>
+                <span id="user-initials">PB</span>
+                <p id="user-fullname">Peanut Butter</p>
                 <i class="log-out-button" data-feather="log-out"></i>
             </div>
         </div>
@@ -47,9 +47,9 @@
         </div>
 
         <div class="pagination">
-            <button id="prev-page">Prev</button>
+            <button type = "button" id="prev-page" onclick="decrementPage();">Prev</button>
             <span id="page-indicator">Page 1</span>
-            <button id="next-page">Next</button>
+            <button type = "button" id="next-page" onclick="incrementPage();">Next</button>
         </div>
     </div>
 
@@ -75,9 +75,9 @@
                 <input type="email" id="email" name="email" placeholder="email.address@gmail.com" required>
                 <i data-feather="mail"></i>
             </div>
-            <button type="submit" onclick="createContact();">Add</button>
+            <button type="submit" onclick="validateAndCreateContact();">Add</button>
         </form>
-        <p id="add-contact-result">Placeholder</p>
+        <p id="add-contact-result"></p>
     </dialog>
 
     <!-- Edit contact modal -->
@@ -100,9 +100,9 @@
                 <input type="email" id="email-edit" name="email" placeholder="email.address@gmail.com" required>
                 <i data-feather="mail"></i>
             </div>
-            <button type="submit" onclick="updateContact();">Update</button>
+            <button type="submit" onclick="validateAndUpdateContact();">Update</button>
         </form>
-        <p id="edit-contact-result">Placeholder</p>
+        <p id="edit-contact-result"></p>
     </dialog>
 
     <!-- Delete contact modal -->
